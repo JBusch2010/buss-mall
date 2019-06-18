@@ -29,7 +29,7 @@ var rightProductOnThePage = null;
 var ProductPicture = function (name, imageSrc){
   this.name = name;
   this.clicks = 0;
-  this.timesSjown - 0;
+  this.timesShown = 0;
   this.url = imageSrc;
 
   ProductPicture.allImages.push(this);
@@ -44,16 +44,15 @@ var renderNewProducts = function (leftIndex, middleIndex, rightIndex){
 };
 //new random product image picker
 var pickNewProducts = function(){
-  do {
   var leftIndex = Math.round(Math.random() * ProductPicture.allImages.length);
-    while (leftIndex === rightIndex === middleIndex)
+
   do {
     var rightIndex = Math.round(Math.random() * ProductPicture.allImages.length);
   } while (rightIndex === leftIndex === middleIndex);
   do {
     var middleIndex = Math.round(Math.random() * ProductPicture.allImages.length);
-    while (middleIndex === leftIndex === rightIndex);
-  }
+  } while (middleIndex === leftIndex === rightIndex);
+
 
   leftProductOnThePage = ProductPicture.allImages[leftIndex];
   middleProductOnThePage = ProductPicture.allImages[middleIndex];
@@ -66,7 +65,7 @@ var pickNewProducts = function(){
 
 var handleClickOnProduct = function(event){
   console.log('im workin playa');
-// if not 25 clicks then keep clicking
+  // if not 25 clicks then keep clicking
   if(totalClicks < 25){
 
     var productsClickedOn = event.target;
@@ -93,14 +92,39 @@ var handleClickOnProduct = function(event){
       //for new pics
       pickNewProducts();
     }
-
+    console.log(event.target.id);
   }
   totalClicks++;
   //once 25 clicks is reached, stop the function
   if(totalClicks === 25){
     productImageSectionTag.removeEventListener('click', handleClickOnProduct);
+    alert('Thanks for your votes');
   }
 };
 
 
 productImageSectionTag.addEventListener('click', handleClickOnProduct);
+
+new ProductPicture('Wine Glass', './img/wine-glass.jpg');
+new ProductPicture('Banana', './img/banana.jpg');
+new ProductPicture('Bathroom','./img/bathroom.jpg');
+new ProductPicture('Boots','./img/boots.jpg');
+new ProductPicture('Breakfast','./img/breakfast.jpg');
+new ProductPicture('Bubblegum','./img/bubblegum.jpg');
+new ProductPicture('Cthulu','./img/cthulhu.jpg');
+new ProductPicture('Dog-Duck','./img/dog-duck.jpg');
+new ProductPicture('Pen','./img/pen.jpg');
+new ProductPicture('Pet-Sweep','./img/pet-sweep.jpg');
+new ProductPicture('Scissors','./img/scissors.jpg');
+new ProductPicture('Shark','./img/shark.jpg');
+new ProductPicture('Sweep','./img/sweep.png');
+new ProductPicture('TaunTaun','./img/tauntaun.jpg');
+new ProductPicture('Unicorn','./img/unicorn.jpg');
+new ProductPicture('USB','./img/usb.gif');
+new ProductPicture('Water-Can','./img/water-can.jpg');
+
+// leftProductOnThePage = ProductPicture.allImages [0];
+// middleProductOnThePage = ProductPicture.allImages [1];
+// rightProductOnThePage = ProductPicture.allImages [2];
+
+pickNewProducts();
