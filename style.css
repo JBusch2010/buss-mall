@@ -2,10 +2,18 @@
   box-sizing: border-box;
 }
 
+section {
+  margin-top: 30px;
+}
+
 section > li {
   list-style: none;
   display: inline;
   overflow: hidden;
+}
+
+section > li :first-child {
+  margin-left: 100px;
 }
 
 p {
@@ -39,3 +47,10 @@ header > ul > li{
   margin-right: 20px;
   font-size: 25px;
 }
+
+section#results {
+  width: 660px;
+  margin: auto;
+  
+}
+
