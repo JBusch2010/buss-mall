@@ -13,7 +13,6 @@ click on a product
     update the object
   update all images displayed times shown
 Randomly pick 3 objects
-
 */
 
 //Global Vars
@@ -21,10 +20,14 @@ var productImageSectionTag = document.getElementById('all_products');
 var leftProductImageTag = document.getElementById('left_product_img');
 var middleProductImageTag = document.getElementById('middle_product_img');
 var rightProductImageTag = document.getElementById('right_product_img');
+var resultsContainer = document.getElementById('results');
 var totalClicks = 0;
 var leftProductOnThePage = null;
 var middleProductOnThePage = null;
 var rightProductOnThePage = null;
+var leftIndex = -1;
+var rightIndex = -1;
+var middleIndex = -1;
 
 var ProductPicture = function (name, imageSrc){
   this.name = name;
@@ -44,19 +47,27 @@ var renderNewProducts = function (leftIndex, middleIndex, rightIndex){
 };
 //new random product image picker
 var pickNewProducts = function(){
-  var leftIndex = Math.round(Math.random() * ProductPicture.allImages.length);
 
   do {
-    var rightIndex = Math.round(Math.random() * ProductPicture.allImages.length);
-  } while (rightIndex === leftIndex === middleIndex);
+    var newLeftIndex = Math.floor(Math.random() * ProductPicture.allImages.length);
+  }while (leftIndex === newLeftIndex || rightIndex === newLeftIndex || middleIndex === newLeftIndex)
   do {
-    var middleIndex = Math.round(Math.random() * ProductPicture.allImages.length);
-  } while (middleIndex === leftIndex === rightIndex);
+    var newRightIndex = Math.floor(Math.random() * ProductPicture.allImages.length);
+  }while (newRightIndex === leftIndex || newRightIndex === middleIndex || newRightIndex === rightIndex || newRightIndex === newLeftIndex);
+  do {
+    var newMiddleIndex = Math.floor(Math.random() * ProductPicture.allImages.length);
+  }while (newMiddleIndex === leftIndex || newMiddleIndex === middleIndex || newMiddleIndex === rightIndex || newMiddleIndex === newLeftIndex || newMiddleIndex === newRightIndex);
+
+  console.log(pickNewProducts);
+
+  leftIndex = newLeftIndex;
+  rightIndex = newRightIndex;
+  middleIndex = newMiddleIndex;
 
 
-  leftProductOnThePage = ProductPicture.allImages[leftIndex];
-  middleProductOnThePage = ProductPicture.allImages[middleIndex];
-  rightProductOnThePage = ProductPicture.allImages[rightIndex];
+  leftProductOnThePage = ProductPicture.allImages[newLeftIndex];
+  middleProductOnThePage = ProductPicture.allImages[newMiddleIndex];
+  rightProductOnThePage = ProductPicture.allImages[newRightIndex];
 
   renderNewProducts(leftIndex, middleIndex, rightIndex);
 };
@@ -64,7 +75,6 @@ var pickNewProducts = function(){
 
 
 var handleClickOnProduct = function(event){
-  console.log('im workin playa');
   // if not 25 clicks then keep clicking
   if(totalClicks < 25){
 
@@ -99,6 +109,12 @@ var handleClickOnProduct = function(event){
   if(totalClicks === 25){
     productImageSectionTag.removeEventListener('click', handleClickOnProduct);
     alert('Thanks for your votes');
+
+    for(i = 0; i < ProductPicture.allImages.length; i++){
+      var liEl = document.createAttribute('li');
+      liEl.textContent = ProductPicture.allImages[i].name + 'test' + Math.floor((Product.allImages[i].totalClicks / ProductPicture[i].timesShown *100));
+      resultsContainer.appendChild(liEl);
+    }
   }
 };
 
