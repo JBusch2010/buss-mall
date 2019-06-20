@@ -2,55 +2,38 @@
   box-sizing: border-box;
 }
 
-section {
-  margin-top: 30px;
+body {
+  background-color: grey;
 }
 
-section > li {
-  list-style: none;
-  display: inline;
-  overflow: hidden;
-}
-
-section > li :first-child {
-  margin-left: 100px;
-}
-
-p {
-  margin-top: 20px;
+h1 {
+  text-align: center;
+  font-size: 30px;
+  color: #f5dc00;
 }
 
 img {
+  float: left;
+  margin-right: 30px;
   width: 300px;
   height: 300px;
 }
 
-body > img {
-  width: 200px;
-  height: 70px;
-  float: left;
+li {
+  list-style: none;
 }
 
-h1 {
-  float: left;
-  font-size: 80px;
-  margin: 10%, 10%, 10%, 10%;
+li:last-child img {
+  margin-right: 0;
 }
 
-h3 {
-  margin-top: 55px;
-  font-size: 50px;
-}
-
-header > ul > li{
-  display: inline;
-  margin-right: 20px;
-  font-size: 25px;
+main {
+  width: 960px;
+  margin: auto;
 }
 
 section#results {
   width: 660px;
   margin: auto;
-  
 }
 

@@ -16,6 +16,7 @@ Randomly pick 3 objects
 */
 
 //Global Vars
+
 var productImageSectionTag = document.getElementById('all_products');
 var leftProductImageTag = document.getElementById('left_product_img');
 var middleProductImageTag = document.getElementById('middle_product_img');
@@ -29,10 +30,10 @@ var leftIndex = -1;
 var rightIndex = -1;
 var middleIndex = -1;
 
-var ProductPicture = function (name, imageSrc){
+var ProductPicture = function (name, imageSrc, timesShown, timesClicked){
   this.name = name;
-  this.clicks = 0;
-  this.timesShown = 0;
+  this.timesClicked = timesClicked ? timesClicked : 0 ;
+  this.timesShown = timesShown || 0;
   this.url = imageSrc;
 
   ProductPicture.allImages.push(this);
@@ -84,21 +85,20 @@ var handleClickOnProduct = function(event){
     if(id === 'left_product_img' || id === 'middle_product_img' || id === 'right_product_img'){
       //need to increment clicks for left, middle, and right products
       if(id === 'left_product_img'){
-        leftProductOnThePage.clicks++;
+        leftProductOnThePage.timesClicked++;
       }
-
+      
       if(id === 'right_product_img'){
-        rightProductOnThePage.click++;
+        rightProductOnThePage.timesClicked++;
       }
-
+      
       if(id === 'middle_product_img'){
-        middleProductOnThePage.click++;
+        middleProductOnThePage.timesClicked++;
       }
-
-      leftProductOnThePage.timesShown++;
+      
       middleProductOnThePage.timesShown++;
       rightProductOnThePage.timesShown++;
-
+      leftProductOnThePage.timesShown++;
       //for new pics
       pickNewProducts();
     }
@@ -109,26 +109,23 @@ var handleClickOnProduct = function(event){
   if(totalClicks === 25){
     productImageSectionTag.removeEventListener('click', handleClickOnProduct);
     alert('Thanks for your votes');
-
-    for(i = 0; i < ProductPicture.allImages.length; i++){
-      var liEl = document.createAttribute('li');
-      liEl.textContent = ProductPicture.allImages[i].name + 'test' + Math.floor((Product.allImages[i].totalClicks / ProductPicture[i].timesShown *100));
-      resultsContainer.appendChild(liEl);
+    makeBusChart();
     }
-  }
-};
+  };
 
 
 productImageSectionTag.addEventListener('click', handleClickOnProduct);
 
-new ProductPicture('Wine Glass', './img/wine-glass.jpg');
+new ProductPicture('Bag', './img/bag.jpg');
 new ProductPicture('Banana', './img/banana.jpg');
 new ProductPicture('Bathroom','./img/bathroom.jpg');
 new ProductPicture('Boots','./img/boots.jpg');
 new ProductPicture('Breakfast','./img/breakfast.jpg');
 new ProductPicture('Bubblegum','./img/bubblegum.jpg');
-new ProductPicture('Cthulu','./img/cthulhu.jpg');
+new ProductPicture('Chair','./img/chair.jpg');
+new ProductPicture('Cthulhu','./img/cthulhu.jpg');
 new ProductPicture('Dog-Duck','./img/dog-duck.jpg');
+new ProductPicture('Dragon', './img/dragon.jpg');
 new ProductPicture('Pen','./img/pen.jpg');
 new ProductPicture('Pet-Sweep','./img/pet-sweep.jpg');
 new ProductPicture('Scissors','./img/scissors.jpg');
@@ -138,9 +135,88 @@ new ProductPicture('TaunTaun','./img/tauntaun.jpg');
 new ProductPicture('Unicorn','./img/unicorn.jpg');
 new ProductPicture('USB','./img/usb.gif');
 new ProductPicture('Water-Can','./img/water-can.jpg');
-
-// leftProductOnThePage = ProductPicture.allImages [0];
-// middleProductOnThePage = ProductPicture.allImages [1];
-// rightProductOnThePage = ProductPicture.allImages [2];
+new ProductPicture('Wine Glass', './img/wine-glass.jpg');
 
 pickNewProducts();
+
+//begin chart
+
+function makeBusChart() {
+
+var busChartCanvas = document.getElementById('busChart').getContext('2d');
+var percents = [];
+var names = [];
+console.log(ProductPicture.allImages);
+for (var i = 0; i < ProductPicture.allImages.length; i++) {
+      var p = Math.floor((ProductPicture.allImages[i].timesClicked / ProductPicture.allImages[i].timesShown) *100);
+      names.push(ProductPicture.allImages[i].name);
+      percents.push(p);
+    }
+    console.log(percents);
+    console.log(names);
+var chartData = new Chart(busChartCanvas, {
+    type: 'bar',
+    data: {
+        labels: names,
+        datasets: [{
+            label: '# of Votes',
+            data: percents,
+            backgroundColor: [
+              'rgba(245, 220, 0, 1)',
+              'rgba(245, 220, 0, 1)',
+              'rgba(245, 220, 0, 1)',
+              'rgba(245, 220, 0, 1)',
+              'rgba(245, 220, 0, 1)',
+              'rgba(245, 220, 0, 1)',
+              'rgba(245, 220, 0, 1)',
+              'rgba(245, 220, 0, 1)',
+              'rgba(245, 220, 0, 1)',
+              'rgba(245, 220, 0, 1)',
+              'rgba(245, 220, 0, 1)',
+              'rgba(245, 220, 0, 1)',
+              'rgba(245, 220, 0, 1)',
+              'rgba(245, 220, 0, 1)',
+              'rgba(245, 220, 0, 1)',
+              'rgba(245, 220, 0, 1)',
+              'rgba(245, 220, 0, 1)',
+              'rgba(245, 220, 0, 1)',
+              'rgba(245, 220, 0, 1)',
+              'rgba(245, 220, 0, 1)'
+            ],
+            borderColor: [
+              'rgba(255, 255, 255, 1)',
+              'rgba(255, 255, 255, 1)',
+              'rgba(255, 255, 255, 1)',
+              'rgba(255, 255, 255, 1)',
+              'rgba(255, 255, 255, 1)',
+              'rgba(255, 255, 255, 1)',
+              'rgba(255, 255, 255, 1)',
+              'rgba(255, 255, 255, 1)',
+              'rgba(255, 255, 255, 1)',
+              'rgba(255, 255, 255, 1)',
+              'rgba(255, 255, 255, 1)',
+              'rgba(255, 255, 255, 1)',
+              'rgba(255, 255, 255, 1)',
+              'rgba(255, 255, 255, 1)',
+              'rgba(255, 255, 255, 1)',
+              'rgba(255, 255, 255, 1)',
+              'rgba(255, 255, 255, 1)',
+              'rgba(255, 255, 255, 1)',
+              'rgba(255, 255, 255, 1)',
+              'rgba(255, 255, 255, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+}
