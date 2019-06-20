@@ -221,5 +221,15 @@ var chartData = new Chart(busChartCanvas, {
 
 }
 
+//test for local storage
 
+var busDriver = {
+  name : 'coolHandLuke',
+  age : 32,
+};
+var busDriverStringed = JSON.stringify(busDriver);
+
+localStorage.setItem('busdriver', busDriverStringed);
+
+var busDriverDestringed = JSON.parse(localStorage.getItem('busDriver'));
 
