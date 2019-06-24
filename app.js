@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 
 /*
@@ -87,15 +88,15 @@ var handleClickOnProduct = function(event){
       if(id === 'left_product_img'){
         leftProductOnThePage.timesClicked++;
       }
-      
+
       if(id === 'right_product_img'){
         rightProductOnThePage.timesClicked++;
       }
-      
+
       if(id === 'middle_product_img'){
         middleProductOnThePage.timesClicked++;
       }
-      
+
       middleProductOnThePage.timesShown++;
       rightProductOnThePage.timesShown++;
       leftProductOnThePage.timesShown++;
@@ -110,8 +111,8 @@ var handleClickOnProduct = function(event){
     productImageSectionTag.removeEventListener('click', handleClickOnProduct);
     alert('Thanks for your votes');
     makeBusChart();
-    }
-  };
+  }
+};
 
 
 productImageSectionTag.addEventListener('click', handleClickOnProduct);
@@ -143,81 +144,82 @@ pickNewProducts();
 
 function makeBusChart() {
 
-var busChartCanvas = document.getElementById('busChart').getContext('2d');
-var percents = [];
-var names = [];
-console.log(ProductPicture.allImages);
-for (var i = 0; i < ProductPicture.allImages.length; i++) {
-      var p = Math.floor((ProductPicture.allImages[i].timesClicked / ProductPicture.allImages[i].timesShown) *100);
-      names.push(ProductPicture.allImages[i].name);
-      percents.push(p);
-    }
-    console.log(percents);
-    console.log(names);
-var chartData = new Chart(busChartCanvas, {
+  var busChartCanvas = document.getElementById('busChart').getContext('2d');
+  var percents = [];
+  var names = [];
+  console.log(ProductPicture.allImages);
+  for (var i = 0; i < ProductPicture.allImages.length; i++) {
+    var p = Math.floor((ProductPicture.allImages[i].timesClicked / ProductPicture.allImages[i].timesShown) *100);
+    names.push(ProductPicture.allImages[i].name);
+    percents.push(p);
+  }
+  console.log(percents);
+  console.log(names);
+
+  var chartData = new Chart(busChartCanvas, {
     type: 'bar',
     data: {
-        labels: names,
-        datasets: [{
-            label: '# of Votes',
-            data: percents,
-            backgroundColor: [
-              'rgba(245, 220, 0, 1)',
-              'rgba(245, 220, 0, 1)',
-              'rgba(245, 220, 0, 1)',
-              'rgba(245, 220, 0, 1)',
-              'rgba(245, 220, 0, 1)',
-              'rgba(245, 220, 0, 1)',
-              'rgba(245, 220, 0, 1)',
-              'rgba(245, 220, 0, 1)',
-              'rgba(245, 220, 0, 1)',
-              'rgba(245, 220, 0, 1)',
-              'rgba(245, 220, 0, 1)',
-              'rgba(245, 220, 0, 1)',
-              'rgba(245, 220, 0, 1)',
-              'rgba(245, 220, 0, 1)',
-              'rgba(245, 220, 0, 1)',
-              'rgba(245, 220, 0, 1)',
-              'rgba(245, 220, 0, 1)',
-              'rgba(245, 220, 0, 1)',
-              'rgba(245, 220, 0, 1)',
-              'rgba(245, 220, 0, 1)'
-            ],
-            borderColor: [
-              'rgba(255, 255, 255, 1)',
-              'rgba(255, 255, 255, 1)',
-              'rgba(255, 255, 255, 1)',
-              'rgba(255, 255, 255, 1)',
-              'rgba(255, 255, 255, 1)',
-              'rgba(255, 255, 255, 1)',
-              'rgba(255, 255, 255, 1)',
-              'rgba(255, 255, 255, 1)',
-              'rgba(255, 255, 255, 1)',
-              'rgba(255, 255, 255, 1)',
-              'rgba(255, 255, 255, 1)',
-              'rgba(255, 255, 255, 1)',
-              'rgba(255, 255, 255, 1)',
-              'rgba(255, 255, 255, 1)',
-              'rgba(255, 255, 255, 1)',
-              'rgba(255, 255, 255, 1)',
-              'rgba(255, 255, 255, 1)',
-              'rgba(255, 255, 255, 1)',
-              'rgba(255, 255, 255, 1)',
-              'rgba(255, 255, 255, 1)'
-            ],
-            borderWidth: 1
-        }]
+      labels: names,
+      datasets: [{
+        label: '# of Votes',
+        data: percents,
+        backgroundColor: [
+          'rgba(245, 220, 0, 1)',
+          'rgba(245, 220, 0, 1)',
+          'rgba(245, 220, 0, 1)',
+          'rgba(245, 220, 0, 1)',
+          'rgba(245, 220, 0, 1)',
+          'rgba(245, 220, 0, 1)',
+          'rgba(245, 220, 0, 1)',
+          'rgba(245, 220, 0, 1)',
+          'rgba(245, 220, 0, 1)',
+          'rgba(245, 220, 0, 1)',
+          'rgba(245, 220, 0, 1)',
+          'rgba(245, 220, 0, 1)',
+          'rgba(245, 220, 0, 1)',
+          'rgba(245, 220, 0, 1)',
+          'rgba(245, 220, 0, 1)',
+          'rgba(245, 220, 0, 1)',
+          'rgba(245, 220, 0, 1)',
+          'rgba(245, 220, 0, 1)',
+          'rgba(245, 220, 0, 1)',
+          'rgba(245, 220, 0, 1)'
+        ],
+        borderColor: [
+          'rgba(255, 255, 255, 1)',
+          'rgba(255, 255, 255, 1)',
+          'rgba(255, 255, 255, 1)',
+          'rgba(255, 255, 255, 1)',
+          'rgba(255, 255, 255, 1)',
+          'rgba(255, 255, 255, 1)',
+          'rgba(255, 255, 255, 1)',
+          'rgba(255, 255, 255, 1)',
+          'rgba(255, 255, 255, 1)',
+          'rgba(255, 255, 255, 1)',
+          'rgba(255, 255, 255, 1)',
+          'rgba(255, 255, 255, 1)',
+          'rgba(255, 255, 255, 1)',
+          'rgba(255, 255, 255, 1)',
+          'rgba(255, 255, 255, 1)',
+          'rgba(255, 255, 255, 1)',
+          'rgba(255, 255, 255, 1)',
+          'rgba(255, 255, 255, 1)',
+          'rgba(255, 255, 255, 1)',
+          'rgba(255, 255, 255, 1)'
+        ],
+        borderWidth: 1
+      }]
     },
     options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
     }
-});
+  });
 
 }
 

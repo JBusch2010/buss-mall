@@ -3,12 +3,20 @@
 }
 
 body {
-  background-color: grey;
+  background-image: url("./img/ant-rozetsky-582421-unsplash.png");
 }
 
 h1 {
   text-align: center;
   font-size: 30px;
+  color: #f5dc00;
+}
+
+h2 {
+  text-align: center;
+  font-size: 20;
+  margin-bottom: 50px;
+  margin-top: 50px;
   color: #f5dc00;
 }
 
@@ -21,6 +29,7 @@ img {
 
 li {
   list-style: none;
+  border-style: solid;
 }
 
 li:last-child img {
@@ -37,3 +46,4 @@ section#results {
   margin: auto;
 }
 
+/* img from https://unsplash.com/photos/lr9vo8mNvrc
